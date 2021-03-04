@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from "react";
+import Container from "./components/Container";
+import UserContext from "./contexts/UserContext";
+import "./styles.css";
 
-function App() {
+export default function App() {
+  // [some value, some function to update the value]
+  const [users, setUser] = useState({
+    users: []
+  });
+
+  useEffect(() => {
+    const data = fetch("https://randomuser.me/api/?results=20");
+    data
+      .then((response) => response.json())
+      .then((response) => setUser({ users: response.results }));
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <UserContext.Provider
+      value={{
+        data: users
+      }}
+    >
+      <div className="App">
+        <Container />
+      </div>
+    </UserContext.Provider>
   );
 }
-
-export default App;
