@@ -7,28 +7,26 @@ function Form() {
 
   return (
     <>
+    <Table bordered hover data-filter-control="true">
+        <thead>
+          <tr>
+            <th data-field="name">First Name</th>
+            <th>Last Name</th>
+            <th>Cell Phone</th>
+            <th>Email Address</th>
+          </tr>
+        </thead>
       {data.users.map((item, index) => (
-        <div key={(item.name.first, item.name.last, item.cell, item.email)}>
-          <Table striped bordered hover>
-            <thead>
-                <tr>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Cell Phone</th>
-                    <th>Email Address</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>{item.name.first}</td>
-                    <td>{item.name.last}</td>
-                    <td>{item.cell}</td>
-                    <td>{item.email}</td>
-                </tr>
-            </tbody>
-        </Table>
-        </div>
+        <tbody>
+          <tr>
+            <td>{item.name.first}</td>
+            <td>{item.name.last}</td>
+            <td>{item.cell}</td>
+            <td>{item.email}</td>
+          </tr>
+        </tbody>
       ))}
+      </Table>
     </>
   );
 }
