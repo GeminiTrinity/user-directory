@@ -4,7 +4,6 @@ import UserContext from "./contexts/UserContext";
 import "./styles.css";
 
 export default function App() {
-  // [some value, some function to update the value]
   const [users, setUser] = useState({
     users: []
   });
